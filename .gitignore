@@ -20,7 +20,6 @@ obj
 *.tlh
 *.tmp
 *.vspscc
-.builds
 
 *.suo
 *.user
