@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<project name="ScheduleTimer" default="release" basedir=".">
+
+<target name="compile">
+	<property name="nant.settings.currentframework" value="net-1.1"/>
+	<solution configuration="release">
+		<projects>
+			<includes name=".\TransClock\TransClock.csproj"/>
+		</projects>
+		<referenceprojects>
+			<includes name=".\ScheduleTimer\ScheduleTimer.csproj"/>
+		</referenceprojects>
+	</solution>
+	<copy todir=".\TransClock\bin\release">
+		<fileset basedir=".\TransClock\">
+			<includes name="*.xml"/>
+		</fileset>
+	</copy>
+</target>
+
+<target name="clean">
+	<delete>
+		<fileset>
+			<includes name=".\**\obj\**"/>
+			<includes name=".\**\bin\**"/>
+		</fileset>
+	</delete>
+</target>
+
+<target name="solution" depends="clean">
+	<property name="nant.settings.currentframework" value="net-1.1"/>
+	<solution configuration="release" solutionfile="TransClock.sln"/>
+	<copy todir=".\TransClock\bin\release">
+		<fileset basedir=".\TransClock\">
+			<includes name="*.xml"/>
+		</fileset>
+	</copy>
+</target>
+
+<target name="release" depends="solution">
+	<delete>
+		<fileset>
+			<includes name="zips\**"/>
+		</fileset>
+	</delete>
+	<mkdir dir="zips\temp"/>
+	<zip zipfile="zips\temp\${nant.project.name}_src.zip">
+		<fileset>
+			<includes name="**.sln"/>
+			<includes name="**.csproj"/>
+			<includes name="**.vbproj"/>
+			<includes name="**.cs"/>
+			<includes name="**.aspx"/>
+			<includes name="**.txt"/>
+			<includes name="**.xml"/>
+			<includes name="**.resx"/>
+			<includes name="**.htm"/>
+			<includes name="**.html"/>
+			<includes name="**.gif"/>
+			<includes name="**.jpg"/>
+			<includes name="**.png"/>
+			<includes name="**.ico"/>
+			<includes name="**.vb"/>
+			<includes name="**.h"/>
+			<includes name="**.hpp"/>
+			<includes name="**.cpp"/>
+			<includes name="**.build"/>
+			<excludes name="**\.svn\**"/>
+			<excludes name="**\bin\**"/>
+			<excludes name="**\obj\**"/>
+			<exculdes name="zips\**"/>
+		</fileset>
+	</zip>
+	<zip zipfile="zips\temp\${nant.project.name}_demo.zip">
+		<fileset>
+			<includes name="**.sln"/>
+			<includes name="**.csproj"/>
+			<includes name="**.vbproj"/>
+			<includes name="**.cs"/>
+			<includes name="**.aspx"/>
+			<includes name="**.txt"/>
+			<includes name="**.xml"/>
+			<includes name="**.resx"/>
+			<includes name="**.htm"/>
+			<includes name="**.html"/>
+			<includes name="**.gif"/>
+			<includes name="**.jpg"/>
+			<includes name="**.png"/>
+			<includes name="**.ico"/>
+			<includes name="**.vb"/>
+			<includes name="**.h"/>
+			<includes name="**.hpp"/>
+			<includes name="**.cpp"/>
+			<includes name="**.build"/>
+			<includes name="**.exe"/>
+			<includes name="**.dll"/>
+			<excludes name="**\.svn\**"/>
+			<excludes name="**\obj\**"/>
+			<exculdes name="zips\**"/>
+		</fileset>
+	</zip>
+	<copy todir="zips\temp">
+		<fileset basedir="article" >
+			<includes name="*.*"/>
+			<excludes name="**\.svn\**"/>
+		</fileset>
+	</copy>
+	<zip zipfile="zips\${nant.project.name}.zip">
+		<fileset basedir="zips\temp">
+			<includes name="**"/>
+		</fileset>
+	</zip>
+</target>
+
+
+</project>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <appSettings>
+    <add key="font" value="Digital Readout Upright" />
+    <add key="font-size" value="38" />
+    <add key="Color" value="DarkBlue" />
+    <add key="alarm" value="Monthly|20, 11:44 PM" />
+    <add key="opacity" value=".5" />
+    <add key="back-color" value="White" />
+    <add key="alarm-color" value="Orange" />
+    <add key="location" value="830,89" />
+  </appSettings>
+</configuration>

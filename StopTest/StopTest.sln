@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopTest", "StopTest.csproj", "{66AC5E8F-C24B-42AB-99C9-3A402D317D71}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleTimer", "..\ScheduleTimer\ScheduleTimer.csproj", "{A1087FDB-40E7-461C-8402-AF74AEFC3E51}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{66AC5E8F-C24B-42AB-99C9-3A402D317D71}.Debug.ActiveCfg = Debug|.NET
+		{66AC5E8F-C24B-42AB-99C9-3A402D317D71}.Debug.Build.0 = Debug|.NET
+		{66AC5E8F-C24B-42AB-99C9-3A402D317D71}.Release.ActiveCfg = Release|.NET
+		{66AC5E8F-C24B-42AB-99C9-3A402D317D71}.Release.Build.0 = Release|.NET
+		{A1087FDB-40E7-461C-8402-AF74AEFC3E51}.Debug.ActiveCfg = Debug|.NET
+		{A1087FDB-40E7-461C-8402-AF74AEFC3E51}.Debug.Build.0 = Debug|.NET
+		{A1087FDB-40E7-461C-8402-AF74AEFC3E51}.Release.ActiveCfg = Release|.NET
+		{A1087FDB-40E7-461C-8402-AF74AEFC3E51}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
