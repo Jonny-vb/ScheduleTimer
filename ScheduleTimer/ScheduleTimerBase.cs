@@ -12,7 +12,7 @@ namespace Schedule
     /// The main difference is the event uses a different delegate and arguement since the .net timer argument 
     /// class is not creatable.
     /// </summary>
-    public class ScheduleTimerBase : IDisposable
+    public abstract class ScheduleTimerBase : IDisposable
     {
         /// <summary>
         /// EventStorage determines the method used to store the last event fire time.  It defaults to keeping it in memory.
@@ -30,7 +30,7 @@ namespace Schedule
         readonly TimerJobCollection _CollJobs;
         volatile bool _StopFlag;
 
-        public ScheduleTimerBase()
+        protected ScheduleTimerBase()
         {
             _Timer = new Timer { AutoReset = false };
 

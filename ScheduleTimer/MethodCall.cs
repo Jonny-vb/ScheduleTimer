@@ -26,11 +26,11 @@ namespace Schedule
     /// <summary>
     /// This is a base class that handles the Parameter list management for the 2 dynamic method call methods.
     /// </summary>
-    public class MethodCallBase
+    public abstract class MethodCall
     {
         public ParameterSetterCollection CollParam { get; private set; }
 
-        public MethodCallBase()
+        protected MethodCall()
         {
             CollParam = new ParameterSetterCollection();
         }
@@ -51,7 +51,7 @@ namespace Schedule
     /// <summary>
     /// Method call captures the data required to do a defered method call.
     /// </summary>
-    public class DelegateMethodCall : MethodCallBase, IMethodCall
+    public class DelegateMethodCall : MethodCall, IMethodCall
     {
         public Delegate Func { get; set; }
 
@@ -101,7 +101,7 @@ namespace Schedule
         }
     }
 
-    public class DynamicMethodCall : MethodCallBase, IMethodCall
+    public class DynamicMethodCall : MethodCall, IMethodCall
     {
         readonly Object _Obj;
 

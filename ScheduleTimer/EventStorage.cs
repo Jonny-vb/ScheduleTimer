@@ -62,7 +62,7 @@ namespace Schedule
 
         public DateTime ReadLastTime()
         {
-            if (_dtLast == DateTime.MaxValue) _dtLast = DateTime.Now;
+            if (DateTime.MaxValue == _dtLast) _dtLast = DateTime.Now;
             return _dtLast;
         }
     }

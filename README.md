@@ -4,7 +4,7 @@ ScheduleTimer
 Release 1.1
 
 Added more tests for Daily, Weekly, Hourly and ByMinute Durations.
-Added Tests for BlockWrapper
+Added Tests for BlockFilter
 Fixed start and syncronization issues with the BlockTimer.
 
 Release 1.2

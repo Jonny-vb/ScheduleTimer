@@ -89,7 +89,7 @@
     <Compile Include="EventStorage.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EventTimeBase.cs" />
+    <Compile Include="EventTime.cs" />
     <Compile Include="ExceptionEventArgs.cs" />
     <Compile Include="IScheduledItem.cs">
       <SubType>Code</SubType>

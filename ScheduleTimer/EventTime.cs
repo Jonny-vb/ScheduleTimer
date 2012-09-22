@@ -1,6 +1,6 @@
 ﻿namespace Schedule
 {
-    public enum EventTimeBase
+    public enum EventTime
     {
         BySecond = 1,
         ByMinute = 2,

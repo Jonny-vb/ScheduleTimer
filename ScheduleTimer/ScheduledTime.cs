@@ -12,10 +12,10 @@ namespace Schedule
     [Serializable]
     public class ScheduledTime : IScheduledItem
     {
-        readonly EventTimeBase _eventTime;
+        readonly EventTime _eventTime;
         TimeSpan _Offset;
 
-        public ScheduledTime(EventTimeBase eventTime, TimeSpan offset)
+        public ScheduledTime(EventTime eventTime, TimeSpan offset)
         {
             _eventTime = eventTime;
             _Offset = offset;
@@ -38,7 +38,7 @@ namespace Schedule
         public ScheduledTime(String eventTime, String offset)
         {
             //TODO:Create an IScheduled time factory method.
-            _eventTime = (EventTimeBase) Enum.Parse(typeof(EventTimeBase), eventTime, true);
+            _eventTime = (EventTime) Enum.Parse(typeof(EventTime), eventTime, true);
             Init(offset);
         }
 
@@ -66,17 +66,17 @@ namespace Schedule
         {
             switch (_eventTime)
             {
-            case EventTimeBase.BySecond:
+            case EventTime.BySecond:
                 return new DateTime(datetime.Year, datetime.Month, datetime.Day, datetime.Hour, datetime.Minute, datetime.Second);
-            case EventTimeBase.ByMinute:
+            case EventTime.ByMinute:
                 return new DateTime(datetime.Year, datetime.Month, datetime.Day, datetime.Hour, datetime.Minute, 0);
-            case EventTimeBase.Hourly:
+            case EventTime.Hourly:
                 return new DateTime(datetime.Year, datetime.Month, datetime.Day, datetime.Hour, 0, 0);
-            case EventTimeBase.Daily:
+            case EventTime.Daily:
                 return new DateTime(datetime.Year, datetime.Month, datetime.Day);
-            case EventTimeBase.Weekly:
+            case EventTime.Weekly:
                 return (new DateTime(datetime.Year, datetime.Month, datetime.Day)).AddDays(-(int) datetime.DayOfWeek);
-            case EventTimeBase.Monthly:
+            case EventTime.Monthly:
                 return new DateTime(datetime.Year, datetime.Month, 1);
             }
             throw new Exception("Invalid base specified for timer.");
@@ -86,17 +86,17 @@ namespace Schedule
         {
             switch (_eventTime)
             {
-            case EventTimeBase.BySecond:
+            case EventTime.BySecond:
                 return dtLast.AddSeconds(1);
-            case EventTimeBase.ByMinute:
+            case EventTime.ByMinute:
                 return dtLast.AddMinutes(1);
-            case EventTimeBase.Hourly:
+            case EventTime.Hourly:
                 return dtLast.AddHours(1);
-            case EventTimeBase.Daily:
+            case EventTime.Daily:
                 return dtLast.AddDays(1);
-            case EventTimeBase.Weekly:
+            case EventTime.Weekly:
                 return dtLast.AddDays(7);
-            case EventTimeBase.Monthly:
+            case EventTime.Monthly:
                 return dtLast.AddMonths(1);
             }
             throw new Exception("Invalid base specified for timer.");
@@ -106,29 +106,29 @@ namespace Schedule
         {
             switch (_eventTime)
             {
-            case EventTimeBase.BySecond:
+            case EventTime.BySecond:
                 _Offset = new TimeSpan(0, 0, 0, 0, int.Parse(offset));
                 break;
-            case EventTimeBase.ByMinute:
+            case EventTime.ByMinute:
                 var arrMinutes = offset.Split(',');
                 _Offset = new TimeSpan(0, 0, 0, ArrayAccess(arrMinutes, 0), ArrayAccess(arrMinutes, 1));
                 break;
-            case EventTimeBase.Hourly:
+            case EventTime.Hourly:
                 var arrHours = offset.Split(',');
                 _Offset = new TimeSpan(0, 0, ArrayAccess(arrHours, 0), ArrayAccess(arrHours, 1), ArrayAccess(arrHours, 2));
                 break;
-            case EventTimeBase.Daily:
+            case EventTime.Daily:
                 var datetime = DateTime.Parse(offset);
                 _Offset = new TimeSpan(0, datetime.Hour, datetime.Minute, datetime.Second, datetime.Millisecond);
                 break;
-            case EventTimeBase.Weekly:
+            case EventTime.Weekly:
                 var arrWeeks = offset.Split(',');
                 if (arrWeeks.Length != 2)
                     throw new Exception("Weekly offset must be in the format n, time where n is the day of the week starting with 0 for sunday");
                 var WeekTime = DateTime.Parse(arrWeeks[1]);
                 _Offset = new TimeSpan(int.Parse(arrWeeks[0]), WeekTime.Hour, WeekTime.Minute, WeekTime.Second, WeekTime.Millisecond);
                 break;
-            case EventTimeBase.Monthly:
+            case EventTime.Monthly:
                 var arrMonths = offset.Split(',');
                 if (arrMonths.Length != 2)
                     throw new Exception("Monthly offset must be in the format n, time where n is the day of the month starting with 1 for the first day of the month.");

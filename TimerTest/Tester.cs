@@ -20,9 +20,7 @@ using Schedule;
 
 namespace TimerTest
 {
-    /// <summary>
-    /// Summary description for Class1.
-    /// </summary>
+
     class Tester
     {
 
@@ -145,7 +143,7 @@ namespace TimerTest
 
         static void MonthlyTest()
         {
-            IScheduledItem item = new ScheduledTime(EventTimeBase.Monthly, new TimeSpan(0));
+            IScheduledItem item = new ScheduledTime(EventTime.Monthly, new TimeSpan(0));
             TestItem(item, new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 1));
             TestItem(item, new DateTime(2004, 1, 1), false, new DateTime(2004, 2, 1));
             TestItem(item, new DateTime(2004, 1, 31), true, new DateTime(2004, 2, 1));
@@ -153,13 +151,13 @@ namespace TimerTest
             TestItem(item, new DateTime(2004, 1, 31, 23, 59, 59, 999), false, new DateTime(2004, 2, 1));
             TestItem(item, new DateTime(2004, 1, 15), true, new DateTime(2004, 2, 1));
 
-            TestItem(new ScheduledTime(EventTimeBase.Monthly, new TimeSpan(1, 3, 2, 1, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 2, 3, 2, 1));
-            TestItem(new ScheduledTime(EventTimeBase.Monthly, new TimeSpan(14, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 15, 0, 0, 0));
+            TestItem(new ScheduledTime(EventTime.Monthly, new TimeSpan(1, 3, 2, 1, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 2, 3, 2, 1));
+            TestItem(new ScheduledTime(EventTime.Monthly, new TimeSpan(14, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 15, 0, 0, 0));
         }
 
         static void WeeklyTest()
         {
-            IScheduledItem item = new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(1, 0, 0, 0, 0));
+            IScheduledItem item = new ScheduledTime(EventTime.Weekly, new TimeSpan(1, 0, 0, 0, 0));
             TestItem(item, new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 5));
             TestItem(item, new DateTime(2004, 1, 2), true, new DateTime(2004, 1, 5));
             TestItem(item, new DateTime(2003, 12, 30), true, new DateTime(2004, 1, 5));
@@ -167,28 +165,28 @@ namespace TimerTest
             TestItem(item, new DateTime(2004, 1, 5), false, new DateTime(2004, 1, 12));
             TestItem(item, new DateTime(2004, 1, 6), false, new DateTime(2004, 1, 12));
 
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 4));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(1, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 5));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(2, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 6));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(3, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 7));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(4, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 1));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(5, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 2));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(6, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 3));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(4, 0, 0, 0, 0)), new DateTime(2004, 1, 1), false, new DateTime(2004, 1, 8));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 4, 6, 34, 23));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4), true, new DateTime(2004, 1, 4, 6, 34, 23));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 3, 0, 0), true, new DateTime(2004, 1, 4, 6, 34, 23));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 0, 0), true, new DateTime(2004, 1, 4, 6, 34, 23));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 33, 0), true, new DateTime(2004, 1, 4, 6, 34, 23));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 34, 0), true, new DateTime(2004, 1, 4, 6, 34, 23));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 34, 23), true, new DateTime(2004, 1, 4, 6, 34, 23));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 34, 23), false, new DateTime(2004, 1, 11, 6, 34, 23));
-            TestItem(new ScheduledTime(EventTimeBase.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 34, 24), true, new DateTime(2004, 1, 11, 6, 34, 23));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 4));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(1, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 5));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(2, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 6));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(3, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 7));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(4, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 1));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(5, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 2));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(6, 0, 0, 0, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 3));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(4, 0, 0, 0, 0)), new DateTime(2004, 1, 1), false, new DateTime(2004, 1, 8));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 4, 6, 34, 23));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4), true, new DateTime(2004, 1, 4, 6, 34, 23));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 3, 0, 0), true, new DateTime(2004, 1, 4, 6, 34, 23));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 0, 0), true, new DateTime(2004, 1, 4, 6, 34, 23));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 33, 0), true, new DateTime(2004, 1, 4, 6, 34, 23));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 34, 0), true, new DateTime(2004, 1, 4, 6, 34, 23));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 34, 23), true, new DateTime(2004, 1, 4, 6, 34, 23));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 34, 23), false, new DateTime(2004, 1, 11, 6, 34, 23));
+            TestItem(new ScheduledTime(EventTime.Weekly, new TimeSpan(0, 6, 34, 23, 0)), new DateTime(2004, 1, 4, 6, 34, 24), true, new DateTime(2004, 1, 11, 6, 34, 23));
         }
 
         static void HourlyTest()
         {
-            IScheduledItem item = new ScheduledTime(EventTimeBase.Hourly, TimeSpan.FromMinutes(20));
+            IScheduledItem item = new ScheduledTime(EventTime.Hourly, TimeSpan.FromMinutes(20));
             TestItem(item, new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 1, 0, 20, 0));
             TestItem(item, new DateTime(2004, 1, 1), false, new DateTime(2004, 1, 1, 0, 20, 0));
             TestItem(item, new DateTime(2004, 1, 1, 0, 20, 0), true, new DateTime(2004, 1, 1, 0, 20, 0));
@@ -198,7 +196,7 @@ namespace TimerTest
 
         static void DailyTest()
         {
-            IScheduledItem item = new ScheduledTime(EventTimeBase.Daily, new TimeSpan(0, 6, 0, 0, 0));
+            IScheduledItem item = new ScheduledTime(EventTime.Daily, new TimeSpan(0, 6, 0, 0, 0));
             TestItem(item, new DateTime(2004, 1, 1), true, new DateTime(2004, 1, 1, 6, 0, 0));
             TestItem(item, new DateTime(2004, 1, 1, 6, 0, 0), true, new DateTime(2004, 1, 1, 6, 0, 0));
             TestItem(item, new DateTime(2004, 1, 1, 6, 1, 0), true, new DateTime(2004, 1, 2, 6, 0, 0));
